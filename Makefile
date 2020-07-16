@@ -6,7 +6,7 @@ OS ?= linux
 ARCH ?= ??? 
 ALL_ARCH ?= arm64 amd64
 DOCKER_IMAGE ?= raquette/heketi
-TAG ?= v1.0.0
+TAG ?= v1.0.4
 REPOSITORY_GENERIC = ${DOCKER_IMAGE}:${TAG}
 REPOSITORY_ARCH = ${DOCKER_IMAGE}:${TAG}-${ARCH}
 

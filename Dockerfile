@@ -25,13 +25,15 @@ RUN mkdir $BUILD_HOME $GOPATH && \
     make && \
     mkdir -p /etc/heketi /var/lib/heketi && \
     make install prefix=/usr && \
-    cp /usr/share/heketi/container/heketi-start.sh /usr/bin/heketi-start.sh && \
     cp /usr/share/heketi/container/heketi.json /etc/heketi/heketi.json && \
     glide cc && \
     cd && rm -rf $BUILD_HOME && \
     dnf -y remove git glide golang mercurial && \
     dnf -y autoremove && \
     dnf -y clean all
+
+#    cp /usr/share/heketi/container/heketi-start.sh /usr/bin/heketi-start.sh && \
+COPY heketi-start.sh /usr/bin/
 
 VOLUME /etc/heketi /var/lib/heketi
 
