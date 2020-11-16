@@ -186,6 +186,7 @@ if [[ ! -e "{$HEKETI_PATH}/inited" && -n "${HEKETI_TOPOLOGY_FILE}" ]]; then
     if [[ -n "${HEKETI_ADMIN_KEY}" ]]; then
         HEKETI_SECRET_ARG="--secret='${HEKETI_ADMIN_KEY}'"
     fi
+    echo heketi-cli --user=admin "${HEKETI_SECRET_ARG}" topology load --json="${HEKETI_TOPOLOGY_FILE}"
     heketi-cli --user=admin "${HEKETI_SECRET_ARG}" topology load --json="${HEKETI_TOPOLOGY_FILE}"
     if [[ $? -ne 0 ]]; then
         # something failed, need to exit with an error

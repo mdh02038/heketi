@@ -1,9 +1,4 @@
-# set author and base
 FROM fedora
-MAINTAINER Heketi Developers <heketi-devel@gluster.org>
-
-LABEL version="1.3.1"
-LABEL description="Development build"
 
 # let's setup all the necessary environment variables
 ENV BUILD_HOME=/build
@@ -25,6 +20,7 @@ RUN mkdir $BUILD_HOME $GOPATH && \
     make && \
     mkdir -p /etc/heketi /var/lib/heketi && \
     make install prefix=/usr && \
+    cp /usr/share/heketi/container/heketi-start.sh /usr/bin/heketi-start.sh && \
     cp /usr/share/heketi/container/heketi.json /etc/heketi/heketi.json && \
     glide cc && \
     cd && rm -rf $BUILD_HOME && \
@@ -32,8 +28,7 @@ RUN mkdir $BUILD_HOME $GOPATH && \
     dnf -y autoremove && \
     dnf -y clean all
 
-#    cp /usr/share/heketi/container/heketi-start.sh /usr/bin/heketi-start.sh && \
-COPY heketi-start.sh /usr/bin/
+COPY heketi-load.sh /usr/bin/
 
 VOLUME /etc/heketi /var/lib/heketi
 
