@@ -1,4 +1,4 @@
-FROM fedora
+FROM fedora:32
 
 # let's setup all the necessary environment variables
 ENV BUILD_HOME=/build
